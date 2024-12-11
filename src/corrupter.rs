@@ -1,19 +1,9 @@
 use rand::{random, thread_rng, Rng};
 
-pub enum CorruptRatio {
-    //Precent(f32),
-    Amount(usize)
-}
-
-pub fn corrupt(start: usize, end: usize, ratio: &CorruptRatio, array: &mut Vec<u8>) -> bool {
+pub fn corrupt(start: usize, end: usize, amount: usize, array: &mut Vec<u8>) -> bool {
     if array.len() < start { return false; }
     if array.len() < end { return false; }
     if end < start { return false; }
-
-    let amount = match ratio {
-        CorruptRatio::Amount(a) => {*a},
-        //_ => { return false;}
-    };
 
     let total = end - start;
     if amount > total {
